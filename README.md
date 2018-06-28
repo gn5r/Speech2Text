@@ -6,6 +6,8 @@
 ----
 
 ## 呼び出し方
+
+```
 <repositories>
   <repository>
       <id>jitpack.io</id>
@@ -20,5 +22,6 @@
     <version>-SNAPSHOT</version>
   </dependency>
 </dependencies>
+```
 
 上記をpom.xmlに追記することで、ライブラリとして使うことができます。
