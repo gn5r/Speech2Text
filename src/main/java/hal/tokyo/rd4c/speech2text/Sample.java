@@ -12,16 +12,17 @@ import java.io.File;
  * @author gn5r
  */
 public class Sample {
-
+    
     public static void main(String[] args) throws Exception {
         MicroPhone microPhone = new MicroPhone();
         microPhone.init();
         microPhone.startRec();
         microPhone.stopRec();
-
+        
         File data = microPhone.convertWav();
-
-        GoogleSpeechAPI googleSpeech = new GoogleSpeechAPI(args[0], data.getPath());
+        
+        GoogleSpeechAPI googleSpeech = new GoogleSpeechAPI(args[0]);
+        googleSpeech.setFilePATH(data.getPath());
         String result = googleSpeech.postGoogleAPI();
         System.out.println("認識結果:" + result);
         

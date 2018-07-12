@@ -23,10 +23,14 @@ public class GoogleSpeechAPI {
 
     private final String Host = "https://www.google.com/speech-api/v2/recognize?output=json&lang=ja-JP&key=";
     private final String APIKey;
-    private final String filePATH;
+    private String filePATH;
 
-    public GoogleSpeechAPI(String APIKey, String filePATH) {
+    public GoogleSpeechAPI(String APIKey) {
         this.APIKey = APIKey;
+    }
+
+    /*    ファイルパスを指定    */
+    public void setFilePATH(String filePATH) {
         this.filePATH = filePATH;
     }
 
@@ -132,10 +136,10 @@ public class GoogleSpeechAPI {
 
             return result = "認識できません";
         }
-        
+
         /*    音声認識の候補の１件目を取り出す    */
         transcript = json.substring(json.indexOf("{\"transcript\":\""));
-        
+
         /*    jsonパース    */
         result = parseJson(transcript, "transcript");
         return result;
