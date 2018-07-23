@@ -134,7 +134,7 @@ public class GoogleSpeechAPI {
 
         if (json.contains("{\"transcript\":\"") == false) {
 
-            return result = "認識できません";
+            return result = null;
         }
 
         /*    音声認識の候補の１件目を取り出す    */

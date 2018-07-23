@@ -15,7 +15,7 @@ import javax.sound.sampled.*;
 public class MicroPhone {
 
     // リニアPCM 16bit 15000Hz × 10秒間 = 300000byte
-    private byte[] voiceData = new byte[300000];
+    private final byte[] voiceData = new byte[300000];
 
     private AudioFormat audioFormat;
     private DataLine.Info info;
@@ -45,25 +45,11 @@ public class MicroPhone {
         System.out.println("マイク入力停止");
     }
 
-    /*    録音データをAIFFにして保存    */
-    public File convertAIFF() throws IOException {
-        System.out.println("aiffファイルへ変換します");
-
-        File audioFile = new File("sample.aiff");
-        ByteArrayInputStream arrayStream = new ByteArrayInputStream(voiceData);
-        AudioInputStream inputStream = new AudioInputStream(arrayStream, audioFormat, voiceData.length);
-        AudioSystem.write(inputStream, AudioFileFormat.Type.AIFF, audioFile);
-        inputStream.close();
-        arrayStream.close();
-
-        return audioFile;
-    }
-
     /*    録音データをWAVにして保存    */
-    public File convertWav() throws IOException {
+    public File convertWav(String fileName) throws IOException {
         System.out.println("wavファイルへ変換します");
 
-        File audioFile = new File("sample.wav");
+        File audioFile = new File(fileName + ".wav");
         ByteArrayInputStream arrayStream = new ByteArrayInputStream(voiceData);
         AudioInputStream inputStream = new AudioInputStream(arrayStream, audioFormat, voiceData.length);
         AudioSystem.write(inputStream, AudioFileFormat.Type.WAVE, audioFile);
